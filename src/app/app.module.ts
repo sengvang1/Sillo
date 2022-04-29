@@ -9,10 +9,12 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingService } from './services/housing.service';
+import { UserService } from './services/user.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
+import { AlertifyService } from './services/alertify.service';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
@@ -44,6 +46,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     HousingService,
+    UserService,
+    AlertifyService,
   ],
   bootstrap: [AppComponent]
 })
