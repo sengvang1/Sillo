@@ -3,7 +3,7 @@
     "Id": 1,
     "SellRent": 1,
     "Name": "Birla House",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000,
     "Image": "prop-1"
   },
@@ -11,7 +11,7 @@
     "Id": 2,
     "SellRent": 2,
     "Name": "House 2",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000,
     "Image": "prop-2"
   },
@@ -19,7 +19,7 @@
     "Id": 3,
     "SellRent": 1,
     "Name": "House 3",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000,
     "Image": "prop-3"
   },
@@ -27,7 +27,7 @@
     "Id": 4,
     "SellRent": 2,
     "Name": "House 4",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000,
     "Image": "prop-4"
   },
@@ -35,7 +35,7 @@
     "Id": 5,
     "SellRent": 1,
     "Name": "House 5",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000,
     "Image": "prop-5"
   },
@@ -43,7 +43,7 @@
     "Id": 6,
     "SellRent": 1,
     "Name": "House 6",
-    "Type": "House",
+    "PType": "House",
     "Price": 12000
   }
 ]
