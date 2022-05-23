@@ -20,7 +20,7 @@
 
                 <div class="form-group col-12">
                   <p>BHK</p>
-                  <div class="btn-group mb-2" btnRadioGroup>
+                  <div class="btn-group mb-2" [(ngModel)]="propertyView.BHK" btnRadioGroup name="BHK">
                     <label *ngFor="let bhk of ['1','2','3','4']" class="btn btn-outline-primary mx-2" [btnRadio]="bhk"
                       tabindex="0" role="button" name="bhk">{{bhk}}</label>
                   </div>
@@ -46,7 +46,7 @@
 
                 <div class="form-group col-12">
                   <label>City</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="propertyView.City" name="City">
                 </div>
 
                 <div class="form-group col-12 mt-2">
@@ -72,7 +72,7 @@
 
                 <div class="form-group col-12">
                   <label>Built Area (in Sqr Feet)</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="propertyView.BuildArea" name="BuildArea">
                 </div>
 
                 <div class="form-group col-12">
