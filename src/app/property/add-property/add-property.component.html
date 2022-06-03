@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group col-12">
-                  <label>Building/Society/Project</label>
+                  <label>Neighborhood/Area</label>
                   <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" required minlength="5"
                     [(ngModel)]="propertyView.Name">
                   <span *ngIf="!propName.valid && propName.touched" class="error-block">
