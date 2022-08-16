@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "sillow-hsap"
+  },
+  "targets": {
+    "sillow-hsap": {
+      "hosting": {
+        "SilloApp": [
+          "sillow-hsap"
+        ]
+      }
+    }
+  }
+}
