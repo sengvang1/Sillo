@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { jaLocale } from 'ngx-bootstrap/chronos';
+import { Ipropertybase } from 'src/app/model/ipropertybase';
+import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
-import { Iproperty } from 'src/app/model/iproperty';
+
 
 
 @Component({
@@ -11,7 +14,13 @@ import { Iproperty } from 'src/app/model/iproperty';
 })
 export class PropertyListComponent implements OnInit {
   SellRent = 1;
-  properties: Array<Iproperty>;
+  properties: Ipropertybase[];
+  Today = new Date();
+  City = '';
+  SearchCity = '';
+  SortbyParam = '';
+  SortDirection = 'asc';
+
   constructor(private route: ActivatedRoute, private housingService: HousingService) {
     this.properties = [];
   }
@@ -30,6 +39,24 @@ export class PropertyListComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  onCityFilter() {
+    this.SearchCity = this.City;
+  }
+
+  clearCityFilter() {
+    this.City = '';
+    this.SearchCity = '';
+  }
+
+  onSortDirection() {
+    if (this.SortDirection === 'desc')
+    {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
+    };
   }
 
 }
