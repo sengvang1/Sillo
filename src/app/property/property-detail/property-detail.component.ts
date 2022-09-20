@@ -28,6 +28,8 @@ export class PropertyDetailComponent implements OnInit {
       }, error => this.router.navigate(['/'])
     );
 
+    this.property.age = this.housingService.getPropertyAge(this.property.estPossessionOn);
+
     this.galleryOptions = [
       {
         width: '100%',
