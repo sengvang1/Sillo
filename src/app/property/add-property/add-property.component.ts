@@ -6,6 +6,7 @@ import { Ipropertybase } from 'src/app/model/ipropertybase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { Ikeyvaluepair } from 'src/app/model/ikeyvaluepair';
 
 @Component({
   selector: 'app-add-property',
@@ -19,9 +20,9 @@ nextClicked: boolean;
 addPropertyForm: FormGroup;
 property = new Property();
 
-propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex']
-furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished']
-cityList: any[]
+propertyTypes: Ikeyvaluepair[];
+furnishTypes: Ikeyvaluepair[];
+cityList: any[];
 
 propertyView: Ipropertybase = {
   id: null,
@@ -46,7 +47,15 @@ propertyView: Ipropertybase = {
     this.houseService.getAllCities().subscribe(data => {
       this.cityList = data;
       console.log(data);
-    })
+    });
+
+    this.houseService.getFurnishingTypes().subscribe(data => {
+      this.furnishTypes = data;
+    });
+
+    this.houseService.getPropertyTypes().subscribe(data => {
+      this.propertyTypes = data;
+    });
   }
 
   CreateAddPropertyForm() {
