@@ -35,7 +35,9 @@ propertyView: Ipropertybase = {
   builtArea: null,
   city: '',
   readyToMove: null,
+  estPossessionOn: null,
 };
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -72,8 +74,8 @@ propertyView: Ipropertybase = {
         Price: [null, Validators.required],
         BuildArea: [null, Validators.required],
         CarpetArea: [null],
-        Security: [null],
-        Maintenance: [null],
+        Security: [0],
+        Maintenance: [0],
       }),
       AddressInfo: this.fb.group({
         FloorNo: [null],
@@ -83,7 +85,7 @@ propertyView: Ipropertybase = {
       }),
       OtherInfo: this.fb.group({
         RTM: [null, Validators.required],
-        PossessionOn: [null],
+        PossessionOn: [null, Validators.required],
         AOP: [null],
         Gated: [null],
         MainEntrance: [null],
@@ -207,18 +209,21 @@ propertyView: Ipropertybase = {
     this.nextClicked = true;
     if (this.allTabsValid()){
       this.mapProperty();
-      this.houseService.addProperty(this.property);
-      console.log('Congrats Form Submitted');
-      console.log('SellRent=' + this.addPropertyForm.value.BasicInfo.SellRent)
-      console.log(this.addPropertyForm);
+      this.houseService.addProperty(this.property).subscribe(
+        () => {
+          console.log('Congrats Form Submitted');
+          console.log('SellRent=' + this.addPropertyForm.value.BasicInfo.SellRent)
+          console.log(this.addPropertyForm);
 
-      if(this.SellRent.value === '2') {
-        this.router.navigate(['/rent-property'])
-      } else {
-        this.router.navigate(['/buy-property'])
-      }
+          if(this.SellRent.value === '2') {
+            this.router.navigate(['/rent-property'])
+          } else {
+            this.router.navigate(['/'])
+          }
+        }
+      );
     } else {
-      this.alertifyService.error('Please review the form and provide all valid entries')
+      this.alertifyService.error('Please review the form and provide all valid entries');
     }
   }
 
@@ -226,10 +231,10 @@ propertyView: Ipropertybase = {
     this.property.id = this.houseService.newPropID();
     this.property.sellRent = +this.SellRent.value;
     this.property.bhk = this.GetterBHK.value;
-    this.property.propertyType = this.GetterPType.value;
+    this.property.propertytypeId = this.GetterPType.value;
     this.property.name = this.Name.value;
-    this.property.city = this.City.value;
-    this.property.furnishingType = this.FType.value;
+    this.property.cityId = this.City.value;
+    this.property.furnishingTypeId = this.FType.value;
     this.property.price = this.GetPrice.value;
     this.property.security = this.Security.value;
     this.property.maintenance = this.Maintenance.value;
@@ -240,7 +245,6 @@ propertyView: Ipropertybase = {
     this.property.address = this.Address.value;
     this.property.address2 = this.LandMark.value;
     this.property.readyToMove = this.RTM.value;
-    this.property.age = this.AOP.value;
     this.property.gated = this.Gated.value;
     this.property.mainEntrance = this.MainEntrance.value;
     this.property.estPossessionOn = this.PossessionOn.value;
