@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions, NgxGalleryThumbnailsComponent } from '@kolkov/ngx-gallery';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
 
@@ -12,6 +12,7 @@ import { HousingService } from 'src/app/services/housing.service';
 })
 export class PropertyDetailComponent implements OnInit {
   public propertyId: number;
+  isPrimaryPhoto: string;
   property = new Property();
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -40,43 +41,25 @@ export class PropertyDetailComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: 'assets/images/internal-1.jpg',
-        medium: 'assets/images/internal-1.jpg',
-        big: 'assets/images/internal-1.jpg'
-      },
-      {
-        small: 'assets/images/internal-2.jpg',
-        medium: 'assets/images/internal-2.jpg',
-        big: 'assets/images/internal-2.jpg'
-      },
-      {
-        small: 'assets/images/internal-3.jpg',
-        medium: 'assets/images/internal-3.jpg',
-        big: 'assets/images/internal-3.jpg'
-      },
-      {
-        small: 'assets/images/internal-4.jpg',
-        medium: 'assets/images/internal-4.jpg',
-        big: 'assets/images/internal-4.jpg'
-      },
-      {
-        small: 'assets/images/internal-5.jpg',
-        medium: 'assets/images/internal-5.jpg',
-        big: 'assets/images/internal-5.jpg'
-      }
-    ];
+    this.galleryImages = this.getPropertyPhotos();
+  }
 
-    // this.route.params.subscribe(
-    //   (params) => {
-    //     this.propertyId = +params['id'];
-    //     this.housingService.getProperty(this.propertyId).subscribe(
-    //       data => {
-    //         this.property.Name = data.Name;
-    //       }, error => this.router.navigate(['/'])
-    //     );
-    //   }
-    // );
+  getPropertyPhotos(): NgxGalleryImage[] {
+    const photoUrls: NgxGalleryImage[] = [];
+    for (const photo of this.property.photos){
+
+      if(photo.isPrimary) {
+        this.isPrimaryPhoto = photo.imageUrl;
+      } else {
+        photoUrls.push (
+          {
+            small: photo.imageUrl,
+            medium: photo.imageUrl,
+            big: photo.imageUrl
+          }
+        );
+      }
+    }
+    return photoUrls;
   }
 }
