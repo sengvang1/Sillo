@@ -45,6 +45,11 @@ propertyView: Ipropertybase = {
     private alertifyService: AlertifyService) { }
 
   ngOnInit() {
+    if (!localStorage.getItem('userName'))
+    {
+        this.alertifyService.error('You must be logged in to ad a property');
+        this.router.navigate(['/user/login']);
+    }
     this.CreateAddPropertyForm();
     this.houseService.getAllCities().subscribe(data => {
       this.cityList = data;
